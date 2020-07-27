@@ -9,6 +9,7 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_ERLANG_COOKIE=asdflw23r2kemcald
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -21,6 +22,7 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_ERLANG_COOKIE=asdflw23r2kemcald
     ports:
       - "5673:5672"
       - "15673:15672"
@@ -33,6 +35,7 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_ERLANG_COOKIE=asdflw23r2kemcald
     ports:
       - "5674:5672"
       - "15674:15672"
