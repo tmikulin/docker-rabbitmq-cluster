@@ -13,6 +13,9 @@ You can use this docker-compose file on macos and linux machines
 
 The default image is **rabbitmq:3.8.1-management** so that you can easily manage your cluster from the web interface
 
+ - HA policy
+ - 
+
 ## General Instructions
 
 Just clone this repo, and run the following command:
