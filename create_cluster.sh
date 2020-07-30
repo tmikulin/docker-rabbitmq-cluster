@@ -8,14 +8,25 @@ set -e
 slaves=(rabbit2 rabbit3)
 
 # check until rabbit1/master is up
-while ! nc -z localhost 5672;
+#while ! nc -z localhost 15672;
+#do
+#  echo "Waiting for rabbit1 to wake up....";
+#  sleep 1;
+#done;
+
+while :
 do
-  echo "Waiting for rabbit1 to wake up....";
-  sleep 1;
-done;
+  echo "Checking rabbit1 for connectivity.."
+  if docker exec -it rabbit1 rabbitmqctl -q node_health_check;
+  then
+    echo "Rabbit1 node is up and ready for the incoming command..."
+    break
+  else
+    sleep 1
+  fi
+done
 
-echo "Rabbit1 node is up and ready for the incoming command..."
-
+sleep 2
 # setup the HA mode on rabbit1 (master) node
 docker exec -it rabbit1 rabbitmqctl set_policy ha-all "^ha\." '{"ha-mode":"all", "ha-sync-mode":"automatic"}'
 
