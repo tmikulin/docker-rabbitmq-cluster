@@ -6,9 +6,6 @@ services:
     container_name: rabbit1
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
-      - type: bind
-        source: $PWD/prepare_cluster.sh
-        target: /prepare_cluster.sh
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -22,9 +19,6 @@ services:
     container_name: rabbit2
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
-      - type: bind
-        source: $PWD/prepare_cluster.sh
-        target: /prepare_cluster.sh
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -40,9 +34,6 @@ services:
     container_name: rabbit3
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
-      - type: bind
-        source: $PWD/prepare_cluster.sh
-        target: /prepare_cluster.sh
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -52,11 +43,6 @@ services:
       - "15674:15672"
     depends_on:
       - rabbit1
-  management:
-    image: debian:buster-slim
-    hostname: side-container
-    container_name: side-container
-    tty: true
 
 volumes:
   rabbitmq-data:
