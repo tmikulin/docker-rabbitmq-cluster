@@ -6,6 +6,9 @@ services:
     container_name: rabbit1
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - type: bind
+        source: $PWD/rabbitmq.conf
+        target: /etc/rabbitmq/rabbitmq.conf
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -19,6 +22,9 @@ services:
     container_name: rabbit2
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - type: bind
+        source: $PWD/rabbitmq.conf
+        target: /etc/rabbitmq/rabbitmq.conf
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -34,6 +40,9 @@ services:
     container_name: rabbit3
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - type: bind
+        source: $PWD/rabbitmq.conf
+        target: /etc/rabbitmq/rabbitmq.conf
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
