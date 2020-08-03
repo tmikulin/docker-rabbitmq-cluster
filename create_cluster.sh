@@ -36,24 +36,3 @@ for rabbit in ${rabbits[*]}; do
     fi
   done
 done
-
-#for slave in ${slaves[*]}; do
-#  while :
-#  do
-#    echo "Checking rabbit1 for connectivity.."
-#    if docker exec -it "$slave" rabbitmqctl -q node_health_check;
-#    then
-#      echo "$slave is up and ready for the incoming commands..."
-#        docker exec -it "$slave" rabbitmqctl stop_app
-#        sleep 1
-#        docker exec -it "$slave" rabbitmqctl reset
-#        sleep 1
-#        docker exec -it "$slave" rabbitmqctl join_cluster rabbit@rabbit1
-#        sleep 2
-#        docker exec -it "$slave" rabbitmqctl start_app
-#      break
-#    else
-#      sleep 1
-#    fi
-#  done
-#done
