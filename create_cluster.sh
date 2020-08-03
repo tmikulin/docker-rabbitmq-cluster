@@ -18,7 +18,7 @@ for rabbit in ${rabbits[*]}; do
       then
         sleep 2
         # setup the HA mode on the rabbit1 (master) node
-        docker exec -it "$rabbit" rabbitmqctl set_policy ha-all "^ha\." '{"ha-mode":"all", "ha-sync-mode":"automatic"}'
+        docker exec -it "$rabbit" rabbitmqctl set_policy ha-all ".*" '{"ha-mode":"all", "ha-sync-mode":"automatic"}'
         break
       else
         # join the slave nodes to the cluster

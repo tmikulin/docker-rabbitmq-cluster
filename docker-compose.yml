@@ -4,11 +4,12 @@ services:
     image: rabbitmq:3.8.1-management
     hostname: rabbit1
     container_name: rabbit1
+    user: rabbitmq
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
       - type: bind
-        source: $PWD/rabbitmq.conf
-        target: /etc/rabbitmq/rabbitmq.conf
+        source: $PWD/advanced.config
+        target: /etc/rabbitmq/advanced.config
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -23,8 +24,8 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
       - type: bind
-        source: $PWD/rabbitmq.conf
-        target: /etc/rabbitmq/rabbitmq.conf
+        source: $PWD/advanced.config
+        target: /etc/rabbitmq/advanced.config
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -41,8 +42,8 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/
       - type: bind
-        source: $PWD/rabbitmq.conf
-        target: /etc/rabbitmq/rabbitmq.conf
+        source: $PWD/advanced.config
+        target: /etc/rabbitmq/advanced.config
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
