@@ -1,32 +1,58 @@
-version: 3.7
+version: '3.7'
 services:
   rabbit1:
-    image: rabbitmq:3.8.1-management
+    image: rabbitmq:${RABBIT_VERSION}-management
+    hostname: rabbit1
+    container_name: rabbit1
+    user: rabbitmq
     volumes:
-      - $PWD/rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - type: bind
+        source: $PWD/advanced.config
+        target: /etc/rabbitmq/advanced.config
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_USER=${RABBIT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBIT_PASS}
+      - RABBITMQ_ERLANG_COOKIE=${RABBIT_COOKIE}
     ports:
       - "5672:5672"
       - "15672:15672"
   rabbit2:
-    image: rabbitmq:3.8.1-management
+    image: rabbitmq:${RABBIT_VERSION}-management
+    hostname: rabbit2
+    container_name: rabbit2
     volumes:
-      - $PWD/rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - type: bind
+        source: $PWD/advanced.config
+        target: /etc/rabbitmq/advanced.config
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_USER=${RABBIT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBIT_PASS}
+      - RABBITMQ_ERLANG_COOKIE=${RABBIT_COOKIE}
     ports:
       - "5673:5672"
       - "15673:15672"
+    depends_on:
+      - rabbit1
   rabbit3:
-    image: rabbitmq:3.8.1-management
+    image: rabbitmq:${RABBIT_VERSION}-management
+    hostname: rabbit3
+    container_name: rabbit3
     volumes:
-      - $PWD/rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - rabbitmq-data:/var/lib/rabbitmq/mnesia/
+      - type: bind
+        source: $PWD/advanced.config
+        target: /etc/rabbitmq/advanced.config
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_USER=${RABBIT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBIT_PASS}
+      - RABBITMQ_ERLANG_COOKIE=${RABBIT_COOKIE}
     ports:
       - "5674:5672"
       - "15674:15672"
+    depends_on:
+      - rabbit1
+
+volumes:
+  rabbitmq-data:
