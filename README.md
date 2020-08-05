@@ -1,20 +1,18 @@
 ## Description
 
-This docker-compose file allows you to create an robust rabbitmq cluster for local development
+This docker-compose file allows you to create an **rabbitmq cluster** for local development or testing
 
 It uses the [official rabbitmq docker image](https://hub.docker.com/_/rabbitmq?tab=description) :rocket:
 
 
 ### * Note on features
 
-The default version is the **rabbitmq version 3.8.1** because of its SAC capability, namely having multiple consumers on one particular queue but with only one active at a time.
+The default version is the **rabbitmq version 3.8.1** because of its [SAC capability](https://www.cloudamqp.com/blog/2019-04-23-rabbitmq-3-8-feature-focus-single-active-consumer.html), namely having multiple consumers on one particular queue but with only one active at a time.
 
-Tested on macOS Sierra (version 10.12.6) and Ubuntu 18
+The compose file is setup with sane defaults that you can change (.env file), and the `bash script + advenced.config` with the added modifications for the cluster configuration:
 
-I needed an local rabbitmq cluster with these defaults for development purposes, but they are all easily customizable:
-
- - ha policy (mirroring of queues on all nodes)
- - pause minority as the partition handling strategy (because s*** happens and you need to be prepared)
+ - `ha policy` (mirroring of queues on all nodes)
+ - `pause minority` as the partition handling strategy (because s*** happens :fire: and you need to be prepared)
  
 
 ## General Instructions
@@ -30,10 +28,12 @@ docker-compose up
 ./create_cluster.sh
 ```
 
-The bash script joins the slave nodes to the cluster and it just needs to run once, 
+The bash script joins the slave nodes to the cluster and it just needs to `run once` :warning:, 
 on every other usage just run the compose file.
 
-My intent was not to change the original rabbitmq docker image, but just boost it a little to create a practical rabbitmq cluster.
+My intent was not to change the original rabbitmq docker image, but just boost it a little to create a `practical rabbitmq cluster`.
+
+Tested on macOS Sierra (version 10.12.6) and Ubuntu 18
 
 ## Release Notes
 
@@ -41,7 +41,7 @@ My intent was not to change the original rabbitmq docker image, but just boost i
 
 ### 1.0.0
 
-2020-07-27:
+2020-08-05:
 
 * The starting point is with the docker-compose version 3.7
 
