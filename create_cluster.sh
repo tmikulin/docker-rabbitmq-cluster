@@ -4,7 +4,7 @@ set -e
 
 # define all the slave nodes here
 # just make sure you always have an quorum
-# 3,5,7... of nodes including the master
+# 3,5,7... of nodes including the master node (rabbit1)
 rabbits=(rabbit1 rabbit2 rabbit3)
 
 for rabbit in ${rabbits[*]}; do
